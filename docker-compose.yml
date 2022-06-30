@@ -1,0 +1,31 @@
+# this is just for running it locally
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./game-bin/frontend
+      dockerfile: ../../Dockerfile.frontend
+  
+  backend:
+    build:
+      context: ./game-bin/backend
+      dockerfile: ../../Dockerfile.backend
+    mem_limit: 256M
+    stop_signal: kill
+    depends_on:
+    - uahv
+    environment:
+      - UAHV_ADDR=http://uahv:8083
+  
+  uahv:
+    image: ghcr.io/ultimatetournament/uahv:latest
+    environment:
+      - ENV=LOCAL
+  
+  haproxy:
+    image: ghcr.io/ultimatetournament/haproxy-local:latest
+    depends_on:
+    - frontend
+    - backend
+    ports:
+      - 8080:8080

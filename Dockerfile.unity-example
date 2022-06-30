@@ -1,0 +1,16 @@
+# Rename this as 'Dockerfile.backend' if you're using Unity
+
+FROM alpine as builder
+WORKDIR /game
+COPY . .
+# ensure our binaries are executable under Linux
+RUN chmod +x *.x86_64 ; chmod +x *.so ; true
+
+# This is a very minimal base image
+FROM gcr.io/distroless/cc
+WORKDIR /game
+COPY --from=builder /game /game
+USER 1000
+ENV PORT=7778
+ENTRYPOINT ["/game/LinuxServerBuild.x86_64", " -batchmode", "-nographics"]
+
