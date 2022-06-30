@@ -9,7 +9,7 @@ environment to some extent.
 
 ## How this works
 
-This environment is based on Docker, which you must install first and can download [here](https://www.docker.com/products/docker-desktop/).
+This environment is based on Docker, which **you must install first and can download [here](https://www.docker.com/products/docker-desktop/)**.
 
 You don't really need to understand the details of Docker to use it here. It's basically a way to run software in a standardized
 way, so it's easy to put them onto (Linux) servers. The nice thing about them is that you can run exactly the same thing
