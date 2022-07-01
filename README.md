@@ -15,8 +15,13 @@ You don't really need to understand the details of Docker to use it here. It's b
 way, so it's easy to put them onto (Linux) servers. The nice thing about it is that you can run exactly the same thing
 locally as on the server and thus be pretty sure, that it will work there too.
 
-After you've installed Docker, open a terminal inside this repository's directory and check if Docker was installed properly with
-`docker-compose version`.
+After you've installed Docker, open a terminal inside this repository's directory and check if Docker was installed:
+```bash
+$ cd ~/LocalArcade
+$ docker-compose version
+# should return something like 
+# Docker Compose version v2.6.0
+```
 
 ## Running your game
 
@@ -24,8 +29,16 @@ If, as part of your SDK integration, you haven't already selected created a Dock
 
 Next, copy your frontend build into `game-bin/frontend/` and your backend build into `game-bin/backend/`.
 
-Now run `docker-compose up` to run the environment and your game. If everything works as intended, you should be able to access your frontend
+Now run the environment and your game. If everything works as intended, you should be able to access your frontend
 under http://localhost:8080
+```bash
+$ docker-compose up
+# many log lines ...
+localarcade-backend-1   | UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+localarcade-backend-1   | 
+localarcade-haproxy-1   | [NOTICE]   (1) : New worker (8) forked
+localarcade-haproxy-1   | [NOTICE]   (1) : Loading success.
+```
 
 ## Running the next session
 
@@ -34,7 +47,11 @@ We don't recycle servers to ensure our player's privacy. Therefore we stop every
 In this local environment, this doesn't quite work. So after your game has finished, just hit `CTRL-C` to shutdown the environment and start it again 
 with `docker-compose up`. This should only take a few seconds.
 
-If you're done you can also run `docker-compose kill` and `docker-compose rm` to cleanup any unused resources.
+If you're done you can cleanup any unused resources:
+```bash
+$ docker-compose kill
+$ docker-compose rm
+```
 
 ## Troubleshooting
 
