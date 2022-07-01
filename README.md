@@ -32,7 +32,7 @@ Next, copy your frontend build into `game-bin/frontend/` and your backend build 
 Now run the environment and your game. If everything works as intended, you should be able to access your frontend
 under http://localhost:8080
 ```bash
-$ docker-compose up
+$ docker-compose up --build # without --build you might not get updates when you change your game
 # many log lines ...
 localarcade-backend-1   | UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
 localarcade-backend-1   | 
@@ -66,3 +66,12 @@ There could be multiple reasons for this error. But the fundamental issue is tha
 For Unity, remember to build with the `IL2CPP` scripting backend. This gives you a very self-contained build.
 
 If you can't figure out what is missing, just reach out and we'll help you fix the Dockerfile.
+
+### Changes not taking effect
+
+Docker has strong caching and in some cases might not pickup your changes. If that's the case, try this:
+
+```bash
+docker-compose kill
+docker-compose up --build --force-recreate
+```
