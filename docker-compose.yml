@@ -5,6 +5,7 @@ services:
     build:
       context: ./game-bin/frontend
       dockerfile: ../../Dockerfile.frontend
+    platform: linux/amd64
   
   backend:
     build:
@@ -12,6 +13,7 @@ services:
       dockerfile: ../../Dockerfile.backend
     mem_limit: 256M
     stop_signal: kill
+    platform: linux/amd64
     depends_on:
     - uahv
     environment:
@@ -19,11 +21,13 @@ services:
   
   uahv:
     image: ghcr.io/ultimatetournament/uahv:latest
+    platform: linux/amd64
     environment:
       - ENV=LOCAL
   
   haproxy:
     image: ghcr.io/ultimatetournament/haproxy-local:latest
+    platform: linux/amd64
     depends_on:
     - frontend
     - backend
