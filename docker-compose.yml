@@ -18,6 +18,7 @@ services:
     - uahv
     environment:
       - UAHV_ADDR=http://uahv:8083
+      - PORT=7778
   
   uahv:
     image: ghcr.io/ultimatetournament/uahv:latest
