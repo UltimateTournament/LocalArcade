@@ -1,4 +1,6 @@
 # Rename this as 'Dockerfile.backend' if you're using Unity
+# NOTE: This assumes you're using the IL2CPP scripting backend
+#       See https://docs.ultimatearcade.io/docs/integration/unity-example#building-the-game
 
 FROM alpine as builder
 WORKDIR /game
