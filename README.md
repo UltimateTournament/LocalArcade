@@ -53,6 +53,17 @@ $ docker-compose kill
 $ docker-compose rm
 ```
 
+## Things to test
+
+### Latency
+
+When your game and your server run on your local machine there is no delay between your browser and the server, but that's not what it's like in reality.
+E.g. our servers in us-east have latencies between 30-70ms within the US and around 90-120ms to central Europe.
+
+To test this, open your game in the browser and hit `F12` to open the developer tools. In Chrome(ium),Edge,Opera you can dropdown for adding
+artificial limits to your connection under the network tab. Select custom there and add the latency you want to test with. 
+Other browsers have this too, but it might be somewhere else in the UI.
+
 ## Troubleshooting
 
 ### Haproxy fails to start
