@@ -54,6 +54,17 @@ COPY <<-eot /etc/nginx/conf.d/default.conf
                 # Wasm files.
                 default_type application/wasm;
             }
+            location ~ .+\.(data|symbols\.json)$ {
+                default_type application/octet-stream;
+            }
+            location ~ .+\.js$ {
+                default_type application/javascript;
+            }
+            location ~ .+\.wasm$ {
+                # Enable streaming WebAssembly compilation by specifying the correct MIME type for
+                # Wasm files.
+                default_type application/wasm;
+            }
         }
         error_page   500 502 503 504  /50x.html;
         location = /50x.html {
