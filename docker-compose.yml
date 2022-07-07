@@ -6,6 +6,8 @@ services:
       context: ./game-bin/frontend
       dockerfile: ../../Dockerfile.frontend
     platform: linux/amd64
+    ports:
+      - 8080:80
   
   backend:
     build:
@@ -25,12 +27,12 @@ services:
     platform: linux/amd64
     environment:
       - ENV=LOCAL
-  
-  haproxy:
-    image: ghcr.io/ultimatetournament/haproxy-local:latest
-    platform: linux/amd64
-    depends_on:
-    - frontend
-    - backend
-    ports:
-      - 8080:8080
+
+  # tcpdump:
+  #   scale: 0
+  #   image: naqvis/alpine-debug
+  #   command: tcpdump -i any -w /dump/dmp port 8080 or port 7778
+  #   network_mode: host
+  #   privileged: true
+  #   volumes:
+  #     - ./dump:/dump
