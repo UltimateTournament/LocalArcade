@@ -101,4 +101,4 @@ eot
 COPY . /usr/share/nginx/html/
 # UnityBug? Game uses If-Modfied-Since even for the initial data load, so we must ensure the data files
 # are newer than the WASM build itself
-RUN chmod 0444 /usr/share/nginx/html/*/* ; touch /usr/share/nginx/html/*/*
+RUN chmod -r 0444 /usr/share/nginx/html/*/* ; touch /usr/share/nginx/html/*/*
